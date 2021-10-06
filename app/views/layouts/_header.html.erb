@@ -1,0 +1,23 @@
+<header>
+  <% if user_signed_in? %>
+    <nav class='nav'>
+      <ul class='nav__list'>
+        <li class='nav__item'><%= link_to 'Bookers', root_path %></li>
+        <li class='nav__item'><%= link_to 'Home', '#' %></li>
+        <li class='nav__item'><%= link_to 'Users', '#' %></li>
+        <li class='nav__item'><%= link_to 'Books', '#' %></li>
+        <li class='nav__item'><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </nav>
+  <% else %>
+    <nav class='nav'>
+      <ul class='nav__list'>
+        <li class='nav__item'><%= link_to 'Bookers', root_path %></li>
+        <li class='nav__item'><%= link_to 'Home', root_path %></li>
+        <li class='nav__item'><%= link_to 'About', about_path %></li>
+        <li class='nav__item'><%= link_to 'Sign up', new_user_registration_path %></li>
+        <li class='nav__item'><%= link_to 'Log in', new_user_session_path %></li>
+      </ul>
+    </nav>
+  <% end %>
+</header>
