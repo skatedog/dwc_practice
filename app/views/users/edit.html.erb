@@ -1,0 +1,11 @@
+<h2>User info</h2>
+<%= render "devise/shared/error_messages", resource: @user %>
+<%= form_with model: @user , local:true do |f| %>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+  <%= f.label :image %><br>
+  <%= f.file_field :image %><br>
+  <%= f.label :introduction %><br>
+  <%= f.text_area :introduction %><br>
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,20 @@
+<% @user ||= current_user %>
+<h2>User info</h2>
+<% if @user.image.attached? %>
+  <%= image_tag @user.image.variant( resize: '100') %>
+<% else %>
+  <%= image_tag 'no_image.jpg', size: '100x100' %>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>name:</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction:</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </thead>
+</table>
+<%= link_to 'ユーザー設定', edit_user_path(@user) %>
