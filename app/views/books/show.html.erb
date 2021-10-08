@@ -17,6 +17,7 @@
       <td><%= @book.title %></td>
       <td><%= @book.body %></td>
       <td><%= render 'books/book_favorites', book:@book %></td>
+      <td>コメント数：<%= @book.book_comments_count %></td>
       <% if @book.user == current_user %>
         <td><%= link_to 'Edit', edit_book_path(@book) %></td>
         <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' } %></td>
@@ -24,3 +25,5 @@
     </tr>
   </tbody>
 </table>
+<%= render 'book_comments/list', book_comments:@book.book_comments %>
+<%= render 'book_comments/form' %>

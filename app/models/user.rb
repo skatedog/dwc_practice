@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_one_attached :image
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
 
   def already_favorited?(book)
     self.favorites.where(book_id: book.id).present?
