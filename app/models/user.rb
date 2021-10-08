@@ -7,5 +7,10 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 50 }
 
   has_one_attached :image
-  has_many :books
+  has_many :books, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
+  def already_favorited?(book)
+    self.favorites.where(book_id: book.id).present?
+  end
 end

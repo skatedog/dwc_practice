@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
     def after_sign_out_path_for(resource)
       root_path
     end
+
+    def make_favorite_book_ids
+      @favorite_book_ids = current_user.favorites.pluck(:book_id)
+    end
 end

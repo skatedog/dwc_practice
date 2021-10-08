@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :make_favorite_book_ids, only: [:show]
 
   def index
     @user = User.find(current_user.id)
@@ -7,11 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:id] == current_user.id
-      @user = User.find(current_user.id)
-    else
-      @user = User.find(params[:id])
-    end
+    @user = User.find(params[:id])
   end
 
   def edit
