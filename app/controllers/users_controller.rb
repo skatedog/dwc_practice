@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
-  before_action :make_favorite_book_ids, only: [:show]
 
   def index
     @user = User.find(current_user.id)
@@ -16,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    p @user = current_user
+    @user = current_user
     if @user.update(user_params)
       redirect_to user_path(@user)
       flash[:notice] = 'You have updated user successfully.'
