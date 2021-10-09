@@ -1,0 +1,8 @@
+<% case params[:model] %>
+<% when "user" %>
+  <h2>Users search for "<%= params[:keyword] %>"</h2>
+  <%= render 'users/list', users: @searched_models %>
+<% when "book" %>
+  <h2>Books search for "<%= params[:keyword] %>"</h2>
+  <%= render 'books/list', books: @searched_models %>
+<% end %>
