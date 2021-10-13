@@ -1,6 +1,0 @@
-<%= book.favorites_count %>
-<% if @favorite_book_ids.include?(book.id) %>
-  <%= link_to 'いいねを解除する', book_favorite_path(book), method: :delete %>
-<% else %>
-  <%= link_to 'いいねをする', book_favorite_path(book), method: :post %>
-<% end %>

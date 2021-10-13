@@ -1,5 +1,4 @@
 <% @user ||= current_user %>
-<% create_following_ids %>
 <h2>User info</h2>
 <% if @user.image.attached? %>
   <%= image_tag @user.image.variant( resize: '100') %>

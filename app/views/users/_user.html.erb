@@ -9,6 +9,6 @@
   <td><%= user.name %></td>
   <td>フォロー数：<%= user.following_count %></td>
   <td>フォロワー数：<%= user.followers_count %></td>
-  <td><%= render 'relationships/botton', user: user %></td>
+  <td class='user_relationships_botton_<%= user.id %>'><%= render 'relationships/botton', user: user %></td>
   <td><%= link_to 'show', user_path(user) %></td>
 </tr>

@@ -1,0 +1,1 @@
+$('.book_favorite_<%= params[:book_id] %>').replaceWith('<%= j(render 'favorites/favorite', book:@book ) %>')

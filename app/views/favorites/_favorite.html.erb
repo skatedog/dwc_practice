@@ -1,0 +1,8 @@
+<td class="book_favorite_<%= book.id %>">
+  <%= book.favorites_count %>
+  <% if current_user.favorited?(book) %>
+    <%= link_to 'いいねを解除する', book_favorite_path(book), method: :delete, remote: true %>
+  <% else %>
+    <%= link_to 'いいねをする', book_favorite_path(book), method: :post, remote: true %>
+  <% end %>
+</td>

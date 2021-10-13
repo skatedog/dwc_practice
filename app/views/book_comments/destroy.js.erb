@@ -1,0 +1,2 @@
+$(".book_comment_<%= params[:id] %>").remove();
+$(".book_comment_count_<%= params[:book_id] %>").text("コメント数：<%= @book.book_comments_count %>");

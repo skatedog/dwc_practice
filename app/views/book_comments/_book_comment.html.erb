@@ -1,9 +1,9 @@
-<tr>
+<tr class='book_comment_<%= book_comment.id %>'>
   <td><%= book_comment.user.name %></td>
   <td><%= book_comment.body %></td>
   <td>
     <% if book_comment.user == current_user %>
-      <%= link_to 'Destroy', book_book_comment_path(book_comment.book_id, book_comment.id), method: :delete %>
+      <%= link_to 'Destroy', book_book_comment_path(book_comment.book_id, book_comment.id), method: :delete, remote:true %>
     <% end %>
   </td>
 </tr>

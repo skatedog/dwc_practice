@@ -2,11 +2,11 @@ class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @books = Book.includes(user: :image_attachment)
+    @books = Book.eager_load(user: :image_attachment)
   end
 
   def show
-    @book = Book.includes(book_comments: :user).find(params[:id])
+    @book = Book.eager_load(:user).preload(book_comments: :user).find(params[:id])
     @user = @book.user
     @book_comment = BookComment.new
   end
@@ -17,17 +17,15 @@ class BooksController < ApplicationController
       redirect_to book_path(@new_book)
       flash[:notice] = 'You have created book successfully.'
     else
-      @books = Book.all
+      @books = Book.eager_load(user: :image_attachment).preload(:favorites)
       render :index
     end
   end
 
   def edit
-    @book = Book.find(params[:id])
   end
 
   def update
-    @book = Book.find(params[:id])
     if @book.update(book_params)
       redirect_to book_path(@book)
       flash[:notice] = 'You have updated book successfully.'
@@ -37,8 +35,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    book = Book.find(params[:id])
-    book.destroy
+    @book.destroy
     redirect_to books_path
   end
 
@@ -49,8 +46,8 @@ class BooksController < ApplicationController
     end
 
     def ensure_correct_user
-      book = Book.find(params[:id])
-      unless book.user == current_user
+      @book = Book.eager_load(:user).find(params[:id])
+      unless @book.user == current_user
         redirect_to books_path
       end
     end

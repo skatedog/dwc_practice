@@ -2,8 +2,7 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-    @user = User.find(current_user.id)
-    @users = User.with_attached_image
+    @users = User.eager_load(:image_attachment)
   end
 
   def show
@@ -11,11 +10,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
   end
 
   def update
-    @user = current_user
     if @user.update(user_params)
       redirect_to user_path(@user)
       flash[:notice] = 'You have updated user successfully.'
@@ -31,8 +28,8 @@ class UsersController < ApplicationController
     end
 
     def ensure_correct_user
-      user = User.find(params[:id])
-      unless user == current_user
+      @user = User.find(params[:id])
+      unless @user == current_user
         redirect_to user_path(current_user)
       end
     end
